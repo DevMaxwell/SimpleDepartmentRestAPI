@@ -1,0 +1,61 @@
+This Source implements a simple rest api with the controller, service, repository layer style.
+
+
+// To add a column name explicitly to the database.
+// You annotate with @Column(
+//      name= "email",
+//      nullable = false,
+//      columnDefinition = "VARCHAR",
+//      unique = true )
+
+// To change the constraint name
+// You annotate with @Table(
+//  name = "departments"
+//  uniqueConstarints = {
+//      @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+//      }
+// )
+
+// JPA VALIDATION
+// You can add other annotations like @Length(max = 5, min =1) -> specifies that property should be at least 1 char minimun and 5 char maximum in lengh
+// @Size
+// @Email
+// @Positive
+// NegativeOrZero
+
+// HANDLING EXCEPTIONS for fetch departmentById
+// So we create a package named errows and create a class called DepartmentNotFoundException that extends Exceptions,
+// We store the previous return value in an Optional generic that may or may not contain a null value
+// Then we throw a new exception i.e DepartmentNotFoundException from error package
+
+<------ > TESTING <----------->
+
+----- CONTROLLER LAYER -------
+// Remember when testing a particular layer, the layer it calls is autowired in
+// For controller layer, it would be service, for service it would be repository
+// For repository both the repository(it extends JPA) and entityManager are autowired
+
+// SAVE METHOD
+// Since we are testing the controller which is literally the endpoint
+// We have to use the @WebMvcTest annotation
+// We create an object of type Department using builder() and also create another object of type Department in the test method
+// We ask mockito to return the object declared outside class when the save method, passing in the object build() inside the method
+// them we perform a mock passing the MockMvcRequestBuilders. post, since we are testing an endpoint that uses the POST method.
+// passing in the url template, contentType, content(JSON to be passed when calling endpoint) and what we expect(status().isOk().
+
+
+// FETCH BY ID METHOD
+// literally the same thing, but we add the jsonPath to the ResultMatcher and what we
+
+
+----- REPOSITORY LAYER -------
+// To test the repository
+// first we use the builder to create a build of entity
+// then we create a persist with entityManager
+// in the test class, we create an instance of the Department entity
+// and an assertEquals to verify if the findbyId() functions Name is same as the name in the Department Builder
+
+
+------ SERVICE LAYER -------
+
+
