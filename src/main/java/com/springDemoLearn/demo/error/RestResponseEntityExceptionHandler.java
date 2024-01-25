@@ -1,9 +1,7 @@
 package com.springDemoLearn.demo.error;
-import com.springDemoLearn.demo.entity.Department;
 import com.springDemoLearn.demo.entity.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

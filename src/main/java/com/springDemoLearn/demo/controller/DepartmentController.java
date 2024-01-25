@@ -2,11 +2,9 @@ package com.springDemoLearn.demo.controller;
 import com.springDemoLearn.demo.entity.Department;
 import com.springDemoLearn.demo.error.DepartmentNotFoundException;
 import com.springDemoLearn.demo.service.DepartmentService;
-import com.springDemoLearn.demo.service.DepartmentServiceImpl;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +13,14 @@ import java.util.List;
 
 @RestController
 public class DepartmentController {
-
-    @Autowired
-    private DepartmentService departmentService;
+    private final DepartmentService departmentService;
 
     // ADDING LOGGERS TO BUILD
     private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
+
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
 
     // CREATE
     @PostMapping("/departments") // @Valid for JPA validation, @RequestBody for Json to be received
@@ -46,7 +46,7 @@ public class DepartmentController {
         return departmentService.fetchDepartmentById(departmentId);
     }
 
-    // fectch department by name
+    // fetch department by name
     @GetMapping("/departments/name/{name}")
     public Department fetchDepartmentByName(@PathVariable("name") String departmentName){
         return departmentService.fetchDepartmentByName(departmentName);

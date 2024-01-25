@@ -3,7 +3,6 @@ package com.springDemoLearn.demo.service;
 import com.springDemoLearn.demo.entity.Department;
 import com.springDemoLearn.demo.repository.DepartmentRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
